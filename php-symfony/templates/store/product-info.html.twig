@@ -1,0 +1,23 @@
+{% extends 'base-templates/userBase.html.twig' %}
+
+{% block content %}
+    <h1>Product List</h1>
+    {% if product is null %}
+        <h2>Product not found</h2>
+        <p>productId {{ productId }}</p>
+        <p>is_numeric {{ is_numeric }}</p>
+        <p>isProductId {{ isProductId }}</p>
+        <p>productIdNull {{ productIdNull }}</p>
+        dump {{ dump(cart) }}
+    {% else %}
+        <ul>
+            <li>Name: {{ product.name }}</li>
+            <li>Price: {{ product.price }}$</li>
+            <li>Price: {{ product.price }}$</li>
+            <li>Category: {{ category.name }}$</li>
+            <li>Description: {{ product.description }}$</li>
+        </ul>
+        <a href="{{ path('app_add_product_to_cart', { 'id': product.id }) }}">Add to cart</a>
+    {% endif %}
+
+{% endblock %}

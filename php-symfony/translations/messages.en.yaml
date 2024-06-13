@@ -1,0 +1,7 @@
+login:
+  title: 'Please sign in'
+  email: 'Email'
+  password: 'Password'
+  sign_in: 'Sign in'
+  remember_me: 'Remember me'
+  error_message: 'Invalid credentials.'

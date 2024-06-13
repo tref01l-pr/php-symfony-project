@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Home Page</h1>
+    <p>Welcome to the home page</p>
+    <p>Here you can find the list of all the books</p>
+    <p>Click on the link below to see the list of books</p>
+
+    {% if user %}
+        <p>Welcome, {{ user.username }}</p>
+    {% else %}
+        <p>You are not logged in.</p>
+    {% endif %}
+{% endblock %}

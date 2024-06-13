@@ -1,0 +1,22 @@
+{% extends 'base-templates/adminBase.html.twig' %}
+
+{% block content %}
+<h2>Here you can create user</h2>
+{#<form id="createUserForm" method="POST" onsubmit="createUser(event)">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br>
+    <label for="firstName">First Name:</label><br>
+    <input type="text" id="firstName" name="firstName"><br>
+    <label for="lastName">Last Name:</label><br>
+    <input type="text" id="lastName" name="lastName"><br>
+    <label for="details">Details:</label><br>
+    <textarea id="details" name="details"></textarea><br>
+    <button type="submit">Create User</button>
+</form>#}
+    {{ form(registration_form) }}
+
+{% endblock %}

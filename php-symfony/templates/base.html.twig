@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    {% block stylesheets %}
+    {% endblock %}
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+
+    {% endblock %}
+    <style>
+        body {
+            margin: 0;
+            font-size: 28px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        main {
+            margin-top: 30px;
+        }
+
+        .header {
+            background-color: #f1f1f1;
+            padding: 30px;
+            text-align: center;
+        }
+
+        #navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        #navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #navbar a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .sticky + .content {
+            padding-top: 60px;
+        }
+    </style>
+</head>
+<body>
+{% block body %}
+    {% block header %}
+        <div id="navbar">
+            <a href="{{ path('app_homepage') }}">Home</a>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {%if is_granted('ROLE_ADMIN')%}
+                    <a href="{{ path('app_admin') }}">Admin</a>
+                {% endif %}
+                <a href="{{ path('app_products_list') }}">Store</a>
+                <a href="{{ path('app_logout') }}">Logout</a>
+                <a href="{{ path('app_show_all_saved_products') }}">Shopping cart</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Login</a>
+                <a href="{{ path('registration') }}">Registration</a>
+            {% endif %}
+        </div>
+    {% endblock %}
+    <main>
+        {% block main %}
+            {% block flashMessage %}
+                <div>
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="flash-{{ label }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endblock %}
+            <div class="content">
+                {% block content %}
+                    <h1>Welcome!</h1>
+                    <p>This is a minimal page.</p>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </main>
+
+
+    <footer>
+        {% block footer %}
+            <h2>Languages</h2>
+            <ul>
+                <li><a href="{{ path('change_locale', {'_locale': 'en'}) }}">English</a></li>
+                <li><a href="{{ path('change_locale', {'_locale': 'pl'}) }}">Polski</a></li>
+                <li><a href="{{ path('change_locale', {'_locale': 'ua'}) }}">Українська</a></li>
+            </ul>
+        {% endblock %}
+    </footer>
+
+{% endblock %}
+
+<script>
+    window.onscroll = function() {myFunction()};
+
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+</script>
+</body>
+</html>

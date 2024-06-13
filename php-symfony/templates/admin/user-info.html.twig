@@ -1,0 +1,39 @@
+{% extends 'base-templates/adminBase.html.twig' %}
+
+{% block content %}
+
+
+
+    <h2>User info</h2>
+    {% if user is not null %}
+        <p>Id: {{ user.id }}</p>
+        <p>Username: {{ user.userName }}</p>
+        <p>Role: {{ user.roles }}</p>
+        <p>Email: {{ user.email }}</p>
+        {% if user.isblocked %}
+            <p>IsBlocked: Blocked</p>
+        {% else %}
+            <p>IsBlocked: No</p>
+        {% endif %}
+        <button onclick="window.location.href='{{ path('app_admin_block_user', {'id': user.id}) }}'">
+            {% if user.isblocked %}
+                Unblock
+            {% else %}
+                Block
+            {% endif %}
+        </button>
+        {% if orders is not null %}
+            <h2>Orders</h2>
+
+            {% for order in orders %}
+                <p>Id: {{ order.product.id }}</p>
+                <p>Order date: {{ order.date|date('Y-m-d') }}</p>
+            {% endfor %}
+        {% else %}
+            <p>No orders found.</p>
+        {% endif %}
+    {% else %}
+        <p>User not found.</p>
+    {% endif %}
+
+{% endblock %}

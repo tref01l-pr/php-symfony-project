@@ -1,0 +1,23 @@
+{% extends 'base-templates/userBase.html.twig' %}
+
+{% block content %}
+    <h1>Product List</h1>
+    {% if products|length == 0 %}
+        <p>No products in the cart</p>
+    {% else %}
+        <ul>
+            {% for product in products %}
+                <li>Name: {{ product.name }} Price: {{ product.price }}$  Number: {{ product.number }}</li>
+                <button onclick="window.location.href='{{ path('app_remove_product_from_cart', {'number': loop.index}) }}'">
+                    Remove
+                </button>
+            {% endfor %}
+        </ul>
+
+        <button onclick="window.location.href='{{ path('app_checkout') }}'">
+            Order Now
+        </button>
+    {% endif %}
+
+
+{% endblock %}

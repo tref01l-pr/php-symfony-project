@@ -1,0 +1,7 @@
+login:
+  title: 'Proszę się zalogować'
+  email: 'Email'
+  password: 'Hasło'
+  sign_in: 'Zaloguj się'
+  remember_me: 'Zapamiętaj mnie'
+  error_message: 'Nieprawidłowe dane uwierzytelniające.'

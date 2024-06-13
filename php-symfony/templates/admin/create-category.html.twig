@@ -1,0 +1,17 @@
+{% extends 'base-templates/adminBase.html.twig' %}
+
+{% block content %}
+    <h2>Create Category</h2>
+
+    {% if category_form.vars.errors|length > 0 %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for error in category_form.vars.errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {{ form(category_form) }}
+{% endblock %}
